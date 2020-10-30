@@ -4,7 +4,7 @@
 
 #### Membres :
 
-***- ABDALA Aya
+*** - ABDALA Aya
 - DUREUX Aurélien ***
 
 #### Tâches :
