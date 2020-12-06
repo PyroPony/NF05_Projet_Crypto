@@ -52,9 +52,12 @@ void test_des_etapes(){
             afficher_octet(octet3_bits);
             afficher_octet(octet4_bits);
     }
-    //rajouter le for et enlever le passage par adresse useless
+    //Pour l'integration finale, 2 solutions envisageables :
+    //      - Garder comme est le script actuellement, fonctionnel
+    //      - Dans le futur Simplifier en utilisant les variables d'itérations des boucles for, ce qui implique de décrémenter la boucle for de décryptage à partir de nb_iteration
+    //                                                                            Enleve la variable numero d'iterationd donc pas de mode pour l'étape 4 de génération de sous clé donc enlever l'incrémentation ou la décrémentation
+    numero_iteration = nb_iteration+1;
     for (int i = 0; i < nb_iteration; ++i) {
-        numero_iteration = i+1;
         etape_4_decryptage(&numero_iteration, key, octet1_bits, octet2_bits, octet3_bits, octet4_bits);
             printf("Uncrypted Bytes STEP 4 :\n");
             afficher_octet(octet1_bits);
@@ -81,7 +84,7 @@ void obtenir_cle(char *key){
 }
 void sous_cle(int mode, int *N, char *K, int *SK){
     if (mode == 0) (*N) ++;
-    //else (*N) --;
+    else (*N) --;
     int sum = 0;
     for (int i = 0; i < strlen(K); ++i) sum += K[i];
     sum = sum / *N;
