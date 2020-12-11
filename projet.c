@@ -313,10 +313,10 @@ int main() {
     if (choix_ops == 0){
       etape_5_decrypt();
       pass_binary();
-      etape_4_decrypt();
+      etape_4_decrypt(nb_iteration, etape, key);
       etape_3_decrypt();
       pass_decimal();
-      etape_1_decrypt();
+      etape_1_decrypt(key);
     }
   }
 
