@@ -1,127 +1,109 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <math.h>
+#include <string.h>
 
+int oct[4]; // variable globale pour traiter les variables en decimal
+int bits_oct[4][8]; // variable globale pour traiter les données en binaire
 
-void etape_3_cryptage (int bits_octet[]);
-void etape_3_decryptage(int bits_octet[]);
-void etape_4_cryptage(int *iteration, char *key, int bits_octect1[], int bits_octect2[], int bits_octect3[], int bits_octect4[]);
-void etape_4_decryptage(int *iteration, char *key, int bits_octect1[], int bits_octect2[], int bits_octect3[], int bits_octect4[]);
-void afficher_octet (int octect[]);
-void decimal_octet(int decimal, int *octet);
-void octet_decimal(int *decimal, int *bits_octet);
-void obtenir_cle(char *key);
-void test_des_etapes();
+// Fonction passage de valeurs decimales a valeurs binaires
+void pass_binary(){
+    int i1, i2;
 
-int main() {
-    test_des_etapes();
-    return 0;
-}
-
-void test_des_etapes(){
-    char key[30] = {0}, tmp;
-    obtenir_cle(key);
-    int numero_iteration = 0, nb_iteration;  //numero de l'iteration et nombre d'iteration totale
-    int dec_octet1, dec_octet2, dec_octet3, dec_octet4; //Variables pour stockage décimales des 4 octets
-    int octet1_bits[8] = {0}, octet2_bits[8] = {0}, octet3_bits[8] = {0}, octet4_bits[8] = {0}; //Variables pour stockage bits des 4 octets
-    printf("Enter the decimal values : [O1] [O2] [O3] [O4] :\n>>");
-    scanf("%d %d %d %d", &dec_octet1, &dec_octet2, &dec_octet3, &dec_octet4); tmp = getchar();
-    printf("Enter the number of iteration :\n>>");
-    scanf("%d", &nb_iteration); tmp = getchar();
-    printf("Initial Bytes : \n%d %d %d %d\n", dec_octet1, dec_octet2, dec_octet3, dec_octet4);
-    //Conversion des valeurs décimales des octets en octets de bits
-    decimal_octet(dec_octet1, octet1_bits);
-    decimal_octet(dec_octet2, octet2_bits);
-    decimal_octet(dec_octet3, octet3_bits);
-    decimal_octet(dec_octet4, octet4_bits);
-    for (int i = 0; i < nb_iteration; ++i) {
-        etape_3_cryptage(octet1_bits);         //Faire un passage par adresse de dec_octectX pour pouvoir l'update et lui repasser une couche
-        etape_3_cryptage(octet2_bits);
-        etape_3_cryptage(octet3_bits);
-        etape_3_cryptage(octet4_bits);
-            printf("Crypted Bytes STEP 3 :\n");
-            afficher_octet(octet1_bits);
-            afficher_octet(octet2_bits);
-            afficher_octet(octet3_bits);
-            afficher_octet(octet4_bits);
-        etape_4_cryptage(&numero_iteration, key, octet1_bits, octet2_bits, octet3_bits, octet4_bits);
-            printf("Crypted Bytes STEP 4 :\n");
-            afficher_octet(octet1_bits);
-            afficher_octet(octet2_bits);
-            afficher_octet(octet3_bits);
-            afficher_octet(octet4_bits);
+    // initialisation de tous les bits des octets a 0
+    for (i1 = 0; i1 < 4; i1++){
+        for (i2 = 0; i2 < 8; i2++){
+            bits_oct[i1][i2] = 0;
+        }
     }
-    //Pour l'integration finale, 2 solutions envisageables :
-    //      - Garder comme est le script actuellement, fonctionnel
-    //      - Dans le futur Simplifier en utilisant les variables d'itérations des boucles for, ce qui implique de décrémenter la boucle for de décryptage à partir de nb_iteration
-    //                                                                            Enleve la variable numero d'iterationd donc pas de mode pour l'étape 4 de génération de sous clé donc enlever l'incrémentation ou la décrémentation
-    numero_iteration = nb_iteration+1;
-    for (int i = 0; i < nb_iteration; ++i) {
-        etape_4_decryptage(&numero_iteration, key, octet1_bits, octet2_bits, octet3_bits, octet4_bits);
-            printf("Uncrypted Bytes STEP 4 :\n");
-            afficher_octet(octet1_bits);
-            afficher_octet(octet2_bits);
-            afficher_octet(octet3_bits);
-            afficher_octet(octet4_bits);
-        etape_3_decryptage(octet1_bits);
-        etape_3_decryptage(octet2_bits);
-        etape_3_decryptage(octet3_bits);
-        etape_3_decryptage(octet4_bits);
+    // calcul valeur binaire bits par bits
+    for (i1 = 0; i1<4; i1++){
+        int octet = oct[i1]; // pour ne pas modifier la valeur originale de l'octet
+        for (i2 = 7; octet > 0 || i2 >= 0; i2--){
+            bits_oct[i1][i2] = octet%2;
+            octet = octet/2;
+        }
     }
-    octet_decimal(&dec_octet1, octet1_bits);
-    octet_decimal(&dec_octet2, octet2_bits);
-    octet_decimal(&dec_octet3, octet3_bits);
-    octet_decimal(&dec_octet4, octet4_bits);
-    printf("Uncrypted Bytes STEP 3 : \n%d %d %d %d", dec_octet1, dec_octet2, dec_octet3, dec_octet4);
+}
+// Fonction passage de valeurs binaires a valeurs decimales
+void pass_decimal(){
+    int i1, i2;
+
+    // Initialisation de tous les octets a 0
+    for (i1 = 0; i1 < 4; i1++){
+        oct[i1] = 0;
+    }
+    // Calcul valeur decimale
+    for (i1 = 0; i1 < 4; i1++){
+        for (i2 = 0; i2 < 8; i2++){
+            oct[i1] += bits_oct[i1][7 - i2] * (int)pow(2, i2);
+            oct[i1] = oct[i1] % 256;
+            while (oct[i1] < 0) oct[i1] = oct[i1] + 256;
+        }
+    }
+}
+void saisie_string (char *string, int size){
+    int i = 0;
+    scanf("%c", &string[i]);
+    if (string[i] == '\n') {
+        string[i] = 0;
+        scanf("%c", &string[i]);
+    }
+    while ((string[i] != '\n') && (i < size) ){
+        i++;
+        scanf("%c", &string[i]);
+    }
+    string[i] = '\0';
 }
 
-void obtenir_cle(char *key){
-    int tmp;
-    printf("Enter the key :\n>>");
-    scanf("%[^\n]s", key);
-    tmp = getchar();
-}
-void sous_cle(int mode, int *N, char *K, int *SK){
-    if (mode == 0) (*N) ++;
-    else (*N) --;
-    int sum = 0;
-    for (int i = 0; i < strlen(K); ++i) sum += K[i];
-    sum = sum / *N;
+// Fonction generant sous-cles pour fonction 4
+void sous_cle(int mode, int nb_it_tot, int etape_it, char key[], int sub_key[]){
+    int sum = 0, div;
+
+    // DETERMINATION SOUS CLE : somme valeurs caracteres cle chiffrement divisé en fontion etape d'iteration
+    for (int i = 0; i < strlen(key); i++) sum += (int)key[i];
+
+    // DISTINCTION ENTRE CRYPTAGE ET DECRYPTAGE : crypt -> 1 a nb d'iteration / decrypt -> nb d'iteration à 1
+    if (mode == 0) div = etape_it + 1;
+    else div = nb_it_tot - etape_it;
+
+    sum /= div; // prendre valeur entiere tronquee
+
+    // PASSAGE BINAIRE DE LA SOUS CLE
     int i = 0;
     while (sum > 0 && i<8){
-        SK[7-i] = sum % 2;
+        sub_key[7-i] = sum % 2;
         sum = sum / 2;
         i++;
     }
 }
-void etape_4_cryptage(int *iteration, char *key, int bits_octect1[], int bits_octect2[], int bits_octect3[], int bits_octect4[]){
-    int second_key[8] = {0};
-    sous_cle(0, iteration, key, second_key); //afficher_octet (second_key);
-    for (int i = 0; i < 8; ++i) {
-        bits_octect1[i] ^= second_key[i];
-        bits_octect2[i] ^= second_key[i];
-        bits_octect3[i] ^= second_key[i];
-        bits_octect4[i] ^= second_key[i];
-    }
+
+
+//ETAPE 1 CRYPTAGE
+void etape_1_crypt(char key[]){
+    for (int i = 0; i < 4; i++) oct[i] = (oct[i] + (int)key[0])%256;
 }
-void etape_4_decryptage(int *iteration, char *key, int bits_octect1[], int bits_octect2[], int bits_octect3[], int bits_octect4[]) { //A retenir que selon la génération de clé, pour décrypter => commencer avec itération = max et ensuite décrémenter
-    int second_key[8] = {0};
-    sous_cle(1, iteration, key, second_key); //afficher_octet (second_key);
-    for (int i = 0; i < 8; ++i) {
-        bits_octect1[i] ^= second_key[i];
-        bits_octect2[i] ^= second_key[i];
-        bits_octect3[i] ^= second_key[i];
-        bits_octect4[i] ^= second_key[i];
+//ETAPE 1 DECRYPTAGE
+void etape_1_decrypt(char key[]){
+    for (int i = 0; i < 4; i++){
+        oct[i] = (oct[i] - (int)key[0])%256;
+
+        // pour toujours avoir un resultat positif
+        while (oct[i] < 0) oct[i] = oct[i] + 256;
     }
 }
 
-void etape_3_cryptage (int bits_octet[]){
-    //Constantes
-    int bits_inter[8] = {0};
-    for (int i = 0; i < 8; ++i) {
-        bits_inter[i] = bits_octet[i];
+// ETAPE 3 CRYPTAGE
+void etape_3_crypt (){
+    //Initialisation bits intermediaires de calcul
+    int bits_inter[4][8];
+    for (int i = 0; i < 4; i++){
+        for (int j = 0; j < 8; j++){
+            bits_inter[i][j] = bits_oct[i][j];
+        }
     }
+
+    //Initialisation des constantes
     int H[8][8]= {
             {1, 0, 0, 0, 1, 1, 1, 1},
             {1, 1, 0, 0, 0, 1, 1, 1},
@@ -131,24 +113,38 @@ void etape_3_cryptage (int bits_octet[]){
             {0, 1, 1, 1, 1, 1, 0, 0},
             {0, 0, 1, 1, 1, 1, 1, 0},
             {0, 0, 0, 1, 1, 1, 1, 1}};
-    int c[8] = {1, 1, 0, 0, 0, 1 ,1,0};
-    //[H*V] Boucle pour le produit matriciel
-    for (int i = 0; i < 8; ++i) {
-        int res = 0;
-        for (int k = 0; k < 8; ++k) {
-            //res += bits_inter[k] * H[i][k];
-            res += bits_inter[k] * H[i][k];
+    int c[8] = {1, 1, 0, 0, 0, 1 , 1, 0};
+
+    //[H*V] Boucle pour le produit matriciel avec modulo 2 (pas obligatoire, peut se faire etape suivante)
+    for (int i = 0; i < 4; i++){
+        for (int j = 0; j < 8; j++){
+            int res = 0;
+            for (int k = 0; k < 8; k++){
+                res += bits_inter[i][k] * H[j][k];
+            }
+            bits_oct[i][j] = res % 2;
         }
-        bits_octet[i] = res;
     }
-    //[H*V+c] Addition de la var précédente avec c + application du modulo %2
-    for (int i = 0; i < 8; ++i) {
-        bits_octet[i] = (bits_octet[i] + c[i])%2;
+    //[H*V+c] Addition de la var précédente avec c avec modulo 2
+    for (int i = 0; i < 4; i++){
+        for (int j = 0; j < 8; j++) {
+            bits_oct[i][j] = (bits_oct[i][j] + c[j])%2;
+        }
     }
+
 }
-void etape_3_decryptage(int bits_octet[]){
-    //Constantes
-    int bits_inter[8] = {0};
+// ETAPE 3 DECRYPTAGE
+void etape_3_decrypt(){
+    //passage des octets en binaire non obligatoire comme dans l'etape 4 du decryptage on travaille en binaire
+    //Initialisation bits intermediaires de calcul
+    int bits_inter[4][8];
+    for (int i = 0; i < 4; i++){
+        for (int j = 0; j < 8; j++){
+            bits_inter[i][j] = bits_oct[i][j]; //initialisation des valeurs des bits intermediaires
+        }
+    }
+
+    //Initialisation des constantes
     int H[8][8] = {
             { 0, 0, 1, 0, 0, 1, 0, 1},
             { 1, 0, 0, 1, 0, 0, 1, 0},
@@ -160,38 +156,228 @@ void etape_3_decryptage(int bits_octet[]){
             { 0, 1, 0, 0, 1, 0, 1, 0}
     };
     int c[8] = { 1, 0, 1, 0, 0, 0, 0, 0};
-    //[V*H'] Boucle pour le produit matriciel
-    for (int i = 0; i < 8; ++i) {
-        int res = 0;
-        for (int k = 0; k < 8; ++k) {
-            res += bits_octet[k] * H[i][k];
+
+    //[H'*V] Boucle pour le produit matriciel avec application modulo 2 (peut etre effectue etape suivante)
+    for (int i = 0; i < 4; i++){
+        for (int j = 0; j < 8; j++){
+            int res = 0;
+            for (int k = 0; k < 8; k++){
+                res += bits_inter[i][k] * H[j][k];
+            }
+            bits_oct[i][j] = res %2;
         }
-        bits_inter[i] = res;
     }
-    //[V*H'+c'] Addition de la var précédente avec c' + application du modulo %2
-    for (int i = 0; i < 8; ++i) {
-        bits_octet[i] = (bits_inter[i] + c[i])%2;
-    }
-}
-void decimal_octet(int decimal, int *octet){
-    //Boucle de transcription en binaire de la valeur décimal de l'octet
-    int j = 0;
-    while (decimal > 0){
-        octet[7-j] = decimal% 2;
-        decimal = decimal / 2;
-        j++;
+
+    //[H'*V+c'] Addition de la var précédente avec c' + application du modulo %2
+    for (int i = 0; i < 4; i++){
+        for (int j = 0; j < 8; j++){
+            bits_oct[i][j] = (bits_oct[i][j] + c[j])%2;
+        }
     }
 }
-void octet_decimal(int *decimal, int *bits_octet){
-    //Boucle de transcription du binaire à une valeur décimale
-    *decimal = 0;
-    for (int i = 0; i < 8; ++i) {
-        *decimal += bits_octet[7-i] * pow(2, i);
+
+//ETAPE 4 CRYPTAGE
+void etape_4_crypt(int num_iteration, int etape_iteration, char key[]){
+    int sub_key[8] = {0};
+
+    //Generation sous_cle
+    sous_cle(0,  num_iteration, etape_iteration, key, sub_key);
+
+    // Application calcul XOR bit par bit
+    for (int i = 0; i<4; i++){
+        for (int j = 0; j < 8; j++) {
+            bits_oct[i][j] ^= sub_key[j];
+        }
     }
 }
-void afficher_octet (int octect[]){
-    for (int i = 0; i < 8; ++i) {
-        printf("%d ", octect[i]);
+//ETAPE 4 DECRYPTAGE
+void etape_4_decrypt(int nb_iteration, int etape_iteration, char key[]){
+    int sub_key[8] = {0};
+
+    // Generation sous_cle
+    sous_cle(1, nb_iteration, etape_iteration, key, sub_key);
+
+    // Application calcul XOR bit par bit
+    for (int i = 0; i < 4; i++){
+        for(int j = 0; j < 8; j++){
+            bits_oct[i][j] ^= sub_key[j];
+        }
     }
-    putchar('\n');
+}
+
+//ETAPE 5 CRYPTAGE
+void etape_5_crypt(){
+    int inter[4]; // pour copier les anciennes valeurs des octets
+
+    // Boucle copie ancienne valeur
+    for(int i = 0; i < 4; i++) inter[i] = oct[i];
+
+    oct[0] = (inter[0] + inter[1]) % 256;
+    oct[1] = (inter[0] + inter[1] + inter[2]) % 256;
+    oct[2] = (inter[1] + inter[2]+ inter[3]) % 256;
+    oct[3] = (inter[2] + inter[3]) % 256;
+
+    // Boule verification valeures entre 0 et 255 car octet = 8 bit
+    for(int i = 0; i < 4; i++) while (oct[i] < 0) oct[i] = oct[i] + 256;
+}
+//ETAPE 5 DECRYTAGE
+void etape_5_decrypt(){
+    int inter[4];
+    for(int i = 0; i < 4; i++) inter[i] = oct[i];
+
+    oct[0] = (inter[0] - inter[2] + inter[3]) % 256;
+    oct[1] = (inter[2] - inter[3]) % 256;
+    oct[2] = (inter[1] - inter[0]) % 256;
+    oct[3] = (inter[3] - inter[1] + inter[0]) % 256;
+
+    for(int i = 0; i < 4; i++) while (oct[i] < 0) oct[i] = oct[i] + 256;
+}
+
+int main() {
+    int etape;
+    int choix_ops;
+
+    // Saisie de l'operation souhaitee avec un controle par l'algorithme du bon choix
+  /*  do{
+        printf ("Quelle operation souhaitez vous effectuer : \nTapez 0 pour decrypter \nTapez 1 pour crypter\n\nChoix operation : ");
+        scanf("%d", &choix_ops);
+    } while (choix_ops != 1 && choix_ops != 0);
+*/
+    // Saisie nombre iteration
+    printf("Combien d'iteration votre cryptage/decryptage necessite-t-il?\nNombre iteration :\n>>");
+    int nb_iteration;
+    scanf("%d", &nb_iteration);
+    getchar(); // Vider Buffer Std In pour ne pas deranger lecture cle
+
+    printf("Entrez votre cle, elle ne doit pas contenir d\'espaces\nCle :");
+    char key[20];
+    scanf("%s", &key);
+
+//Dans ce commentaire les valeurs ne servent que de test
+
+// ICI LECTURE DES 4 Octects mais valeur juste pour tester !
+    //ct[0]= 2; oct[1]= 250; oct[2]= 255; oct[3]= 15;
+    FILE *fileptr;
+    FILE *fileptr2;
+    //fileptr = fopen(name_input, "rb");  // Ouverture du fichier en binaire
+    //fileptr2 = fopen(name_output, "wb");
+    fileptr = fopen("../test.pdf", "rb");  // Ouverture du fichier en binaire
+    fileptr2 = fopen("../export.pdf", "wb");
+    if (fileptr == NULL){       //verification de l'ouverture des fichiers
+        printf("Erreur ouverture fichier initial\n");
+        exit(1);
+    } else if (fileptr2 == NULL){
+        printf("Erreur ouverture fichier ecriture\n");
+        exit(1);
+    }
+    int CA = 0, cas_init = 0;
+    while (CA == 0) {                        //Lecture jusqu'à la fin du fichier
+        for (int j = 0; j < 4; ++j) {       //Par groupe de 4 octets
+            oct[j] = fgetc(fileptr);     //récupération d'un byte
+            if (oct[j] == EOF) {          //test pour savoir si on est à la fin du fichier
+                CA = 1;                     //si cas échéant on arrete la lecture du fichier
+                if (j == 0) {
+                    cas_init = 1;           //On mémorise ce changement d'état
+                    break;                  //Traitement du cas où la fin de fichier arrive sur le début d'un packet de 4 octets, donc sortie du for
+                }
+                oct[j] = 0;              //Pour le reste, on va utiliser des octets de bourrage pour compléter le dernier packet de 4 octets
+            }
+        }
+        if (cas_init != 1) {     //Cas particulier où on ignore le packet inutile
+
+            //INTEGRER LA BOUCLE DE CRYPTAGE/DECRYPTAGE ICI (peut être des simplification quant au decryptage car on aura forcemment nb_octets multiple de 4
+            for (etape = 0; etape < nb_iteration; etape++){
+                etape_1_crypt(key);
+                pass_binary();
+                etape_3_crypt();
+                etape_4_crypt(nb_iteration, etape, key);
+                pass_decimal();
+                etape_5_crypt();
+            }
+            //Pour l'écriture du fichier final décrypté il faut enlever
+            for (int i = 0; i < 4; ++i) { //Ecriture des octets encryptés
+                printf("%d ", oct[i]);
+                fprintf(fileptr2, "%c", oct[i]);
+            }
+            putchar('\n');
+
+        }
+    }
+    fclose(fileptr); // Close the file
+    fclose(fileptr2);
+
+    fileptr = fopen("../export.pdf", "rb");  // Ouverture du fichier en binaire
+    fileptr2 = fopen("../export2.pdf", "wb");
+    CA = 0, cas_init = 0;
+    while (CA == 0) {                        //Lecture jusqu'à la fin du fichier
+        for (int j = 0; j < 4; ++j) {       //Par groupe de 4 octets
+            oct[j] = fgetc(fileptr);     //récupération d'un byte
+            if (oct[j] == EOF) {          //test pour savoir si on est à la fin du fichier
+                CA = 1;                     //si cas échéant on arrete la lecture du fichier
+                if (j == 0) {
+                    cas_init = 1;           //On mémorise ce changement d'état
+                    break;                  //Traitement du cas où la fin de fichier arrive sur le début d'un packet de 4 octets, donc sortie du for
+                }
+                oct[j] = 0;              //Pour le reste, on va utiliser des octets de bourrage pour compléter le dernier packet de 4 octets
+            }
+        }
+        if (cas_init != 1) {     //Cas particulier où on ignore le packet inutile
+
+            //INTEGRER LA BOUCLE DE CRYPTAGE/DECRYPTAGE ICI (peut être des simplification quant au decryptage car on aura forcemment nb_octets multiple de 4
+            for (etape = 0; etape < nb_iteration; etape++) {
+                etape_5_decrypt();
+                pass_binary();
+                etape_4_decrypt(nb_iteration, etape, key);
+                etape_3_decrypt();
+                pass_decimal();
+                etape_1_decrypt(key);
+            }
+            //Pour l'écriture du fichier final décrypté il faut enlever
+            for (int i = 0; i < 4; ++i) { //Ecriture des octets encryptés
+                printf("%d ", oct[i]);
+                fprintf(fileptr2, "%c", oct[i]);
+            }
+            putchar('\n');
+
+        }
+    }
+    fclose(fileptr); // Close the file
+    fclose(fileptr2);
+
+
+/*
+    for (etape = 0; etape < nb_iteration; etape++) {
+        etape_5_decrypt();
+        pass_binary();
+        etape_4_decrypt(nb_iteration, etape, key);
+        etape_3_decrypt();
+        pass_decimal();
+        etape_1_decrypt(key);
+    }
+    for (int i = 0; i<4; i++) printf("%d ", oct[i]);putchar('\n');*/
+
+// il faudra ajouter lecture et écriture fichier
+    /*for (etape = 0; etape < nb_iteration; etape++){
+        // CRYPTAGE
+        if (choix_ops == 1){
+            etape_1_crypt(key);
+            pass_binary();
+            etape_3_crypt();
+            etape_4_crypt(nb_iteration, etape, key);
+            pass_decimal();
+            etape_5_crypt();
+        }
+
+        // DECRYPTAGE
+        if (choix_ops == 0){
+            etape_5_decrypt();
+            pass_binary();
+            etape_4_decrypt(nb_iteration, etape, key);
+            etape_3_decrypt();
+            pass_decimal();
+            etape_1_decrypt(key);
+        }
+    }
+*/
+    return 0;
 }
