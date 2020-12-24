@@ -14,12 +14,13 @@ int oct[4];
 int bits_oct[4][8];
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// name : pass_binary
-// args : N/A
-// return : N/A
-// fonction : passage de valeurs decimales a valeurs binaires
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ *@fn pass_binary()
+ *@brief Passage de valeurs decimales a valeurs binaires
+
+ *@param N/A
+ *@return N/A
+*/
 void pass_binary()
 {
     // Initialisation de tous les bits des octets a 0
@@ -37,12 +38,13 @@ void pass_binary()
         }
     }
 }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// name : pass_decimal
-// args : N/A
-// return : N/A
-// fonction : passage de valeurs binaires a valeurs decimales
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ *@fn pass_decimal()
+ *@brief Passage de valeurs binaires a valeurs decimales
+
+ *@param N/A
+ *@return N/A
+*/
 void pass_decimal()
 {
     int i1, i2;
@@ -63,54 +65,28 @@ void pass_decimal()
 
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// name : sous_cle
-// args : mode / nombre total d'iteration / etape d'iteration crypt ou decryt / cle chiffrement / sous_cle
-// return : N/A
-// fonction : genere sous-cles pour etape 4 cryptage
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void sous_cle(int mode, int nb_it_tot, int etape_it, char key[], int sub_key[])
-{
-    int sum = 0, div;
+/**
+ *@fn etape_1_crypt(char *key)
+ *@brief Etape de cryptage 1 - Associe à chaque valeur une autre valeur par ajout valeurs ASCII termes de clé
 
-    // DETERMINATION SOUS CLE : somme valeurs caracteres cle chiffrement divisé en fontion etape d'iteration
-    for (int i = 0; i < strlen(key); i++) sum += (int)key[i];
+ *@param *key       Passage de la clé de chiffrement grâce à son adresse
 
-    // DISTINCTION ENTRE CRYPTAGE ET DECRYPTAGE : crypt -> 1 a nb d'iteration / decrypt -> nb d'iteration à 1
-    if (mode == 0) div = etape_it + 1;
-    else div = nb_it_tot - etape_it;
-
-    sum /= div; // prendre valeur entiere tronquee
-
-    // PASSAGE BINAIRE DE LA SOUS CLE
-    int i = 0;
-    while (sum > 0 && i<8){
-        sub_key[7-i] = sum % 2;
-        sum = sum / 2;
-        i++;
-    }
-}
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// name : etape_1_crypt
-// args : cle de chiffrement
-// return : N/A
-// fonction : etape de cryptage 1 - associe à chaque valeur une autre valeur par ajout termes de clé
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void etape_1_crypt(char key[])
+ *@return N/A
+*/
+void etape_1_crypt(char *key)
 {
     for (int i = 0; i < 4; i++)
       oct[i] = (oct[i] + (int)key[0])%256;
 }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// name : etape_1_decrypt
-// args : cle de chiffrement
-// return : N/A
-// fonction : etape de décryptage 1 - associe à chaque valeur une autre valeur par retrait termes de clé
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void etape_1_decrypt(char key[])
+/**
+ *@fn etape_1_decrypt(char *key)
+ *@brief Etape de cryptage 1 - Associe à chaque valeur une autre valeur par retait valeur ASCII des termes de clé
+
+ *@param *key       Passage de la clé de chiffrement grâce à son adresse
+
+ *@return N/A
+*/
+void etape_1_decrypt(char *key)
 {
     for (int i = 0; i < 4; i++) {
         oct[i] = (oct[i] - (int)key[0])%256;
@@ -123,12 +99,13 @@ void etape_1_decrypt(char key[])
 
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// name : etape_2_crypt_decrypt
-// args : N/A
-// return : N/A
-// fonction : etape de cryptage et décryptage 2 - associe a chq x un y grâce au fichier permut_etape_2.txt
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ *@fn etape_2_crypt_decrypt()
+ *@brief Etape de cryptage et décryptage 2 - Associe à chaque x un y grâce au fichier permut_etape_2.txt
+
+ *@param N/A
+ *@return N/A
+*/
 void etape_2_crypt_decrypt()
 {
   // Declaration tableau de permutation et pointeur fichier
@@ -166,12 +143,13 @@ void etape_2_crypt_decrypt()
 
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// name : etape_3_crypt
-// args : N/A
-// return : N/A
-// fonction : etape de cryptage 3 - calcul matriciel selon constantes imposées dans le sujet
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ *@fn etape_3_crypt()
+ *@brief Etape de cryptage 3 - Calcul matriciel selon constantes imposées dans le sujet
+
+ *@param N/A
+ *@return N/A
+*/
 void etape_3_crypt ()
 {
     //Initialisation bits intermediaires de calcul
@@ -211,12 +189,13 @@ void etape_3_crypt ()
         }
     }
 }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// name : etape_3_decrypt
-// args : N/A
-// return : N/A
-// fonction : etape de décryptage 3 - calcul matriciel selon constantes imposées dans le sujet
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ *@fn etape_3_decrypt()
+ *@brief Etape de décryptage 3 - Calcul matriciel selon constantes imposées dans le sujet
+
+ *@param N/A
+ *@return N/A
+*/
 void etape_3_decrypt()
 {
     //passage des octets en binaire non obligatoire comme dans l'etape 4 du decryptage on travaille en binaire
@@ -261,19 +240,55 @@ void etape_3_decrypt()
 }
 
 
+/**
+ *@fn sous_cle(int mode, int nb_it_tot, int etape_it, char key[], int sub_key[])
+ *@brief Generation sous-cles a partir clé de cryptage et etape d'itération pour étape 4 cryptage
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// name : etape_4_crypt
-// args : nombre d'itération / etape de l'itération / cle de chiffrement
-// return : N/A
-// fonction : etape de cryptage 4 - genere sous_clé via clé et étape pour ensuite faire XOR bit par bit
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void etape_4_crypt(int num_iteration, int etape_iteration, char key[])
+ *@param mode            Permet de savoir si l'on est en cryptage (0) ou en décryptage (1)
+ *@param nb_it_tot       Nombre total d'itérations
+ *@param etape_it        Etape actuelle d'itération
+ *@param *key            Pointeur de la clé de chiffrement
+ *@param sub_key[]       Variable de la sous_cle
+
+ *@return N/A
+*/
+void sous_cle(int mode, int nb_it_tot, int etape_it, char *key, int sub_key[])
+{
+    int sum = 0, div;
+
+    // DETERMINATION SOUS CLE : somme valeurs caracteres cle chiffrement divisé en fontion etape d'iteration
+    for (int i = 0; i < strlen(key); i++) sum += (int)key[i];
+
+    // DISTINCTION ENTRE CRYPTAGE ET DECRYPTAGE : crypt -> 1 a nb d'iteration / decrypt -> nb d'iteration à 1
+    if (mode == CRYPT) div = etape_it + 1;
+    else div = nb_it_tot - etape_it;
+
+    sum /= div; // prendre valeur entiere tronquee
+
+    // PASSAGE BINAIRE DE LA SOUS CLE
+    int i = 0;
+    while (sum > 0 && i<8){
+        sub_key[7-i] = sum % 2;
+        sum = sum / 2;
+        i++;
+    }
+}
+/**
+ *@fn etape_4_crypt(int nb_iteration, int etape_iteration, char *key)
+ *@brief Etape de cryptage 4 - Genere sous_clé via clé et étape pour ensuite faire XOR bit par bit
+
+ *@param nb_iteration      Nombre d'itération totale pour génération sous-clé
+ *@param etape_iteration   Etape actuelle d'itération pour génération sous-clé
+ *@param *key              Clé de chiffrement via son adresse
+
+ *@return N/A
+*/
+void etape_4_crypt(int nb_iteration, int etape_iteration, char *key)
 {
     int sub_key[8] = {0};
 
     //Generation sous_cle
-    sous_cle(0,  num_iteration, etape_iteration, key, sub_key);
+    sous_cle(CRYPT,  nb_iteration, etape_iteration, key, sub_key);
 
     // Application calcul XOR bit par bit
     for (int i = 0; i<4; i++) {
@@ -282,18 +297,22 @@ void etape_4_crypt(int num_iteration, int etape_iteration, char key[])
         }
     }
 }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// name : etape_4_decrypt
-// args : nombre d'itération / etape de l'itération / cle de chiffrement
-// return : N/A
-// fonction : etape de décryptage 4 - genere sous_clé via clé et étape pour ensuite faire XOR bit par bit
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void etape_4_decrypt(int nb_iteration, int etape_iteration, char key[])
+/**
+ *@fn etape_4_decrypt(int nb_iteration, int etape_iteration, char *key)
+ *@brief Etape de cryptage 4 - Genere sous_clé via clé et étape pour ensuite faire XOR bit par bit
+
+ *@param nb_iteration      Nombre d'itération totale pour génération sous-clé
+ *@param etape_iteration   Etape actuelle d'itération pour génération sous-clé
+ *@param *key              Clé de chiffrement via son adresse
+
+ *@return N/A
+*/
+void etape_4_decrypt(int nb_iteration, int etape_iteration, char *key)
 {
     int sub_key[8] = {0};
 
     // Generation sous_cle
-    sous_cle(1, nb_iteration, etape_iteration, key, sub_key);
+    sous_cle(DECRYPT, nb_iteration, etape_iteration, key, sub_key);
 
     // Application calcul XOR bit par bit
     for (int i = 0; i < 4; i++) {
@@ -305,12 +324,14 @@ void etape_4_decrypt(int nb_iteration, int etape_iteration, char key[])
 
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// name : etape_5_crypt
-// args : N/A
-// return : N/A
-// fonction : etape de cryptage 5 - calcul système imposé par le sujet
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ *@fn etape_5_crypt()
+ *@brief Etape de cryptage 5 - Calcul système imposé par le sujet
+
+ *@param N/A
+
+ *@return N/A
+*/
 void etape_5_crypt()
 {
     int inter[4]; // pour copier les anciennes valeurs des octets
@@ -329,12 +350,13 @@ void etape_5_crypt()
       while (oct[i] < 0)
         oct[i] = oct[i] + 256;
 }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// name : etape_5_decrypt
-// args : N/A
-// return : N/A
-// fonction : etape de décryptage 5 - calcul inverse système etape 5 crypt imposée par le sujet
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ *@fn etape_5_crypt()
+ *@brief Etape de cryptage 5 - Calcul inverse système etape 5 crypt imposée par le sujet
+ *@param N/A
+
+ *@return N/A
+*/
 void etape_5_decrypt()
 {
     int inter[4];
@@ -355,12 +377,13 @@ void etape_5_decrypt()
 
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// name : saisie_chaine_dynam
-// args : chaine à saisir
-// return : N/A
-// fonction : saisie une chaîne dynamiquement sans connaître sa taille à l'avance
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ *@fn etape_5_crypt()
+ *@brief Saisie une chaîne dynamiquement sans connaître sa taille à l'avance
+
+ *@param N/A
+ *@return chaine      Chaine de caractère saisie
+*/
 char *saisie_chaine_dynam()
 {
   char *chaine = NULL ;
@@ -388,14 +411,15 @@ char *saisie_chaine_dynam()
 }
 
 
+/**
+ *@fn main()
+ *@brief Saisie des informations necessaires et effecture lecture et écriture dans les fichiers
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// name : main
-// args : N/A
-// return : N/A
-// fonction : saisie des informations necessaires et effecture lecture et écriture dans les fichiers
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-int main() {
+ *@param N/A
+ *@return N/A
+*/
+int main()
+{
   // Variables paramètres cryptage/decryptage
   int choix_ops, nb_iteration;
   int choix_name = FALSE;
