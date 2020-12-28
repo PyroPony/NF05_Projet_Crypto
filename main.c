@@ -8,47 +8,43 @@
 #define DECRYPT   1
 #define FALSE     0
 #define TRUE      1
-
-// variables globales pour traiter les octets (decimal et binaire)
-int oct[4];
-int bits_oct[4][8];
+#define NB_OCTET  4
+#define NB_BIT    8
 
 
 /**
  *@fn pass_binary()
  *@brief Passage de valeurs decimales a valeurs binaires
-
  *@param N/A
  *@return N/A
 */
-void pass_binary()
+void pass_binary(int *oct, int **bits_oct)
 {
     // Initialisation de tous les bits des octets a 0
-    for (int i1 = 0; i1 < 4; i1++) {
-        for (int i2 = 0; i2 < 8; i2++)
+    for (int i1 = 0; i1 < NB_OCTET; i1++) {
+        for (int i2 = 0; i2 < NB_BIT; i2++)
             bits_oct[i1][i2] = 0;
     }
 
     // Calcul valeur binaire bits par bits
-    for (int i1 = 0; i1<4; i1++) {
+    for (int i1 = 0; i1 < NB_OCTET; i1++) {
         int octet = oct[i1]; // pour ne pas modifier la valeur originale de l'octet
         for (int i2 = 7; octet > 0 || i2 >= 0; i2--) {
-            bits_oct[i1][i2] = octet%2;
-            octet = octet/2;
+            bits_oct[i1][i2] = octet % 2;
+            octet = octet / 2;
         }
     }
 }
 /**
  *@fn pass_decimal()
  *@brief Passage de valeurs binaires a valeurs decimales
-
  *@param N/A
  *@return N/A
 */
-void pass_decimal()
+void pass_decimal(int **bits_oct, int *oct)
 {
     // Initialisation de tous les octets a 0
-    for (int i1 = 0; i1 < 4; i1++){
+    for (int i1 = 0; i1 < NB_OCTET; i1++){
         oct[i1] = 0;
     }
     // Calcul valeur decimale
@@ -66,12 +62,10 @@ void pass_decimal()
 /**
  *@fn etape_1_crypt(char *key)
  *@brief Etape de cryptage 1 - Associe à chaque valeur une autre valeur par ajout valeurs ASCII termes de clé
-
  *@param *key       Passage de la clé de chiffrement grâce à son adresse
-
  *@return N/A
 */
-void etape_1_crypt(const char *key)
+void etape_1_crypt(int *oct, const char *key)
 {
     for (int i = 0; i < 4; i++)
         oct[i] = (oct[i] + (int)key[0])%256;
@@ -79,19 +73,17 @@ void etape_1_crypt(const char *key)
 /**
  *@fn etape_1_decrypt(char *key)
  *@brief Etape de cryptage 1 - Associe à chaque valeur une autre valeur par retait valeur ASCII des termes de clé
-
  *@param *key       Passage de la clé de chiffrement grâce à son adresse
-
  *@return N/A
 */
-void etape_1_decrypt(const char *key)
+void etape_1_decrypt(int *oct, const char *key)
 {
     for (int i = 0; i < 4; i++) {
-        oct[i] = (oct[i] - (int)key[0])%256;
+      oct[i] = (oct[i] - (int)key[0])%256;
 
-        // pour toujours avoir un resultat positif
-        while (oct[i] < 0)
-            oct[i] = oct[i] + 256;
+      // pour toujours avoir un resultat positif
+      while (oct[i] < 0)
+        oct[i] = oct[i] + 256;
     }
 }
 
@@ -100,11 +92,10 @@ void etape_1_decrypt(const char *key)
 /**
  *@fn etape_2_crypt_decrypt()
  *@brief Etape de cryptage et décryptage 2 - Associe à chaque x un y grâce au fichier permut_etape_2.txt
-
  *@param N/A
  *@return N/A
 */
-void etape_2_crypt_decrypt()
+void etape_2_crypt_decrypt(int *oct)
 {
     // Declaration tableau de permutation et pointeur fichier
     int tab_permut[256][2];
@@ -144,11 +135,10 @@ void etape_2_crypt_decrypt()
 /**
  *@fn etape_3_crypt()
  *@brief Etape de cryptage 3 - Calcul matriciel selon constantes imposées dans le sujet
-
  *@param N/A
  *@return N/A
 */
-void etape_3_crypt ()
+void etape_3_crypt (int **bits_oct)
 {
     //Initialisation bits intermediaires de calcul
     int bits_inter[4][8];
@@ -190,11 +180,10 @@ void etape_3_crypt ()
 /**
  *@fn etape_3_decrypt()
  *@brief Etape de décryptage 3 - Calcul matriciel selon constantes imposées dans le sujet
-
  *@param N/A
  *@return N/A
 */
-void etape_3_decrypt()
+void etape_3_decrypt(int **bits_oct)
 {
     //passage des octets en binaire non obligatoire comme dans l'etape 4 du decryptage on travaille en binaire
     //Initialisation bits intermediaires de calcul
@@ -241,13 +230,11 @@ void etape_3_decrypt()
 /**
  *@fn sous_cle(int mode, int nb_it_tot, int etape_it, char key[], int sub_key[])
  *@brief Generation sous-cles a partir clé de cryptage et etape d'itération pour étape 4 cryptage
-
  *@param mode            Permet de savoir si l'on est en cryptage (0) ou en décryptage (1)
  *@param nb_it_tot       Nombre total d'itérations
  *@param etape_it        Etape actuelle d'itération
  *@param *key            Pointeur de la clé de chiffrement
  *@param sub_key[]       Variable de la sous_cle
-
  *@return N/A
 */
 void sous_cle(int mode, int nb_it_tot, int etape_it, char *key, int sub_key[])
@@ -274,14 +261,12 @@ void sous_cle(int mode, int nb_it_tot, int etape_it, char *key, int sub_key[])
 /**
  *@fn etape_4_crypt(int nb_iteration, int etape_iteration, char *key)
  *@brief Etape de cryptage 4 - Genere sous_clé via clé et étape pour ensuite faire XOR bit par bit
-
  *@param nb_iteration      Nombre d'itération totale pour génération sous-clé
  *@param etape_iteration   Etape actuelle d'itération pour génération sous-clé
  *@param *key              Clé de chiffrement via son adresse
-
  *@return N/A
 */
-void etape_4_crypt(int nb_iteration, int etape_iteration, char *key)
+void etape_4_crypt(int **bits_oct, int nb_iteration, int etape_iteration, char *key)
 {
     int sub_key[8] = {0};
 
@@ -298,14 +283,12 @@ void etape_4_crypt(int nb_iteration, int etape_iteration, char *key)
 /**
  *@fn etape_4_decrypt(int nb_iteration, int etape_iteration, char *key)
  *@brief Etape de cryptage 4 - Genere sous_clé via clé et étape pour ensuite faire XOR bit par bit
-
  *@param nb_iteration      Nombre d'itération totale pour génération sous-clé
  *@param etape_iteration   Etape actuelle d'itération pour génération sous-clé
  *@param *key              Clé de chiffrement via son adresse
-
  *@return N/A
 */
-void etape_4_decrypt(int nb_iteration, int etape_iteration, char *key)
+void etape_4_decrypt(int **bits_oct, int nb_iteration, int etape_iteration, char *key)
 {
     int sub_key[8] = {0};
 
@@ -325,12 +308,10 @@ void etape_4_decrypt(int nb_iteration, int etape_iteration, char *key)
 /**
  *@fn etape_5_crypt()
  *@brief Etape de cryptage 5 - Calcul système imposé par le sujet
-
  *@param N/A
-
  *@return N/A
 */
-void etape_5_crypt()
+void etape_5_crypt(int *oct)
 {
     int inter[4]; // pour copier les anciennes valeurs des octets
 
@@ -352,10 +333,9 @@ void etape_5_crypt()
  *@fn etape_5_crypt()
  *@brief Etape de cryptage 5 - Calcul inverse système etape 5 crypt imposée par le sujet
  *@param N/A
-
  *@return N/A
 */
-void etape_5_decrypt()
+void etape_5_decrypt(int *oct)
 {
     int inter[4];
 
@@ -378,7 +358,6 @@ void etape_5_decrypt()
 /**
  *@fn etape_5_crypt()
  *@brief Saisie une chaîne dynamiquement sans connaître sa taille à l'avance
-
  *@param N/A
  *@return chaine      Chaine de caractère saisie
 */
@@ -412,7 +391,6 @@ char *saisie_chaine_dynam()
 /**
  *@fn main()
  *@brief Saisie des informations necessaires et effecture lecture et écriture dans les fichiers
-
  *@param N/A
  *@return N/A
 */
@@ -432,6 +410,16 @@ int main()
 
     // Variables octets bourrage
     int nb_bourrage = 0, rech_bourrage[2];
+
+    // Variables concernant les octets
+    int *octet, **bits_octet;
+
+    // Allocation dynamique des variables concernant les octets
+    octet = (int*) malloc ( NB_OCTET * sizeof(int));
+    bits_octet = (int **) malloc( NB_OCTET * sizeof(int *) );
+
+    for (int i = 0; i < NB_OCTET; i++)
+      bits_octet[i] = (int *) malloc(NB_BIT * sizeof(int));
 
 
     // Saisie de l'operation souhaitee avec un controle bon choix
@@ -479,13 +467,18 @@ int main()
         name_out = saisie_chaine_dynam();
     }
     else {
+        // Allocation dynamique nom fichier sortie avec taille chaine entrée + 12 caractère pour
         name_out = (char *) malloc ((strlen(name_in) + 12) * sizeof(char));
+
+        // Copie nom fichier en entrée dans nom fichier en sortie mais sans l'extension
         strncpy(name_out, name_in, strlen(name_in) - (lenght_ext));
 
+        // Ajout chaine de caractère en fonction de l'opération effectuée pour différencier name_in de name_out
         if (choix_ops == CRYPT)
             strcat(name_out, add_crypted);
         else strcat(name_out, add_decrypted);
 
+        // Ajout extension
         strcat(name_out, extension);
     }
 
@@ -504,26 +497,27 @@ int main()
     }
 
     fseek(file_in, 0L, SEEK_END);
-    int sz_tot = ftell(file_in), sz, percent = 20;
+    int tot_size = ftell(file_in), cur_size, percent = 20;
     fseek(file_in, 0L, SEEK_SET);
-    printf("Fichier convertie : 0 %%\n");
+    printf("Fichier converti : 0 %%\n");
 
     // CRYPTAGE : lecture et écriture fichier jusqu'à sa fin (4 par 4 octets)
     if (choix_ops == CRYPT) {
         while (arret == FALSE) {
 
-            sz = ftell(file_out);
-            if ((sz*100/sz_tot) / percent == 1 ){
-                printf("Fichier convertie : %d %%\n", sz*100/sz_tot);
+            //Affichage progression cryptage en pourcentage
+            cur_size = ftell(file_out);
+            if ((cur_size*100/tot_size) / percent == 1 ){
+                printf("Fichier convertie : %d %%\n", cur_size * 100 / tot_size);
                 percent += 20;
             }
 
             for (int i = 0; i < 4; i++) {
                 //Lecture d'un octet
-                oct[i] = fgetc(file_in);
+                octet[i] = fgetc(file_in);
 
                 // Condition pour savoir si fin fichier
-                if (oct[i] == EOF) {
+                if (octet[i] == EOF) {
                     arret = TRUE;
                     //Condition pour savoir si on est au premier octet d'un paquet
                     if (i == 0) {
@@ -532,7 +526,7 @@ int main()
                         break;
                     }
                     // Condition non vérifiée : octets de bourrage
-                    oct[i] = 0;
+                    octet[i] = 0;
                     // Variable pour enregistrer le nombre d'octet de bourrage
                     if (nb_bourrage == 0 ){
                         nb_bourrage = 4-i;
@@ -546,57 +540,65 @@ int main()
                 //CRYPTAGE ITERATIF avec contrôle des passages binaire/decimal
                 for (int etape = 0; etape < nb_iteration; etape++){
 
-                    etape_1_crypt(key);
-                    etape_2_crypt_decrypt();
-                    pass_binary();
-                    etape_3_crypt();
-                    etape_4_crypt(nb_iteration, etape, key);
-                    pass_decimal();
-                    etape_5_crypt();
+                    etape_1_crypt(octet, key);
+                    etape_2_crypt_decrypt(octet);
+                    pass_binary(octet, bits_octet);
+                    etape_3_crypt(bits_octet);
+                    etape_4_crypt(bits_octet, nb_iteration, etape, key);
+                    pass_decimal(bits_octet, octet);
+                    etape_5_crypt(octet);
                 }
 
 
                 //Ecriture des octets dans file_out
-                for (int i = 0; i < 4; i++) {
-                    fprintf(file_out, "%c", oct[i]);
+                for (int i = 0; i < NB_OCTET; i++) {
+                    fprintf(file_out, "%c", octet[i]);
                 }
             }
         }
     }
         // DECRYPTAGE : lecture et écriture fichier jusqu'à sa fin (4 par 4 octets)
     else {
-        while (arret == FALSE) {
-            // Lecture des octets 4 par 4
-            for (int i = 0; i < 4; i++)
-                oct[i] = fgetc(file_in);
-            //Lecture des 2 octets du prochain paquet pour savoir si c'est la fin
-            for(int i = 0; i < 2; i++)
-                rech_bourrage[i] = fgetc(file_in);
-            // condition fin vérifiée : note nombre d'octets pour ne pas les recopier
-            if (rech_bourrage[1] == EOF) {
-                //pour ne pas relire 4 octet
-                arret = TRUE;
-                nb_bourrage = rech_bourrage[0];
-            }
-                //Retour du curseur 2 crans en arrière pour pouvoir continuer tranquillement
-            else fseek (file_in, -2, SEEK_CUR);
+      while (arret == FALSE) {
 
-            //DECRYPTAGE ITERATIF avec contrôle des passages binaire/decimal
-            for (int etape = 0; etape < nb_iteration; etape++){
-                etape_5_decrypt();
-                pass_binary();
-                etape_4_decrypt(nb_iteration, etape, key);
-                etape_3_decrypt();
-                pass_decimal();
-                etape_2_crypt_decrypt();
-                etape_1_decrypt(key);
-            }
-
-            //Ecriture des octets dans file_out tout en enlevant les octets de bourrage s'il y en a
-            for (int i = 0; i < 4 - nb_bourrage; i++) {
-                fprintf(file_out, "%c", oct[i]);
-            }
+        //Affichage progression décryptage
+        cur_size = ftell(file_out);
+        if ((cur_size*100/tot_size) / percent == 1 ){
+            printf("Fichier convertie : %d %%\n", cur_size * 100 / tot_size);
+            percent += 20;
         }
+
+        // Lecture des octets 4 par 4
+        for (int i = 0; i < 4; i++)
+            octet[i] = fgetc(file_in);
+        //Lecture des 2 octets du prochain paquet pour savoir si c'est la fin
+        for(int i = 0; i < 2; i++)
+            rech_bourrage[i] = fgetc(file_in);
+        // condition fin vérifiée : note nombre d'octets pour ne pas les recopier
+        if (rech_bourrage[1] == EOF) {
+            //pour ne pas relire 4 octet
+            arret = TRUE;
+            nb_bourrage = rech_bourrage[0];
+        }
+        //Retour du curseur 2 crans en arrière pour pouvoir continuer tranquillement
+        else fseek (file_in, -2, SEEK_CUR);
+
+        //DECRYPTAGE ITERATIF avec contrôle des passages binaire/decimal
+        for (int etape = 0; etape < nb_iteration; etape++){
+            etape_5_decrypt(octet);
+            pass_binary(octet, bits_octet);
+            etape_4_decrypt(bits_octet, nb_iteration, etape, key);
+            etape_3_decrypt(bits_octet);
+            pass_decimal(bits_octet, octet);
+            etape_2_crypt_decrypt(octet);
+            etape_1_decrypt(octet, key);
+        }
+
+        //Ecriture des octets dans file_out tout en enlevant les octets de bourrage s'il y en a
+        for (int i = 0; i < NB_OCTET - nb_bourrage; i++) {
+          fprintf(file_out, "%c", octet[i]);
+        }
+      }
     }
 
 
@@ -614,7 +616,8 @@ int main()
     free(name_in);
     free(name_out);
     free(extension);
-    printf("Fichier convertie : 100 %%\n");
+
+    printf("Fichier converti : 100 %%\n");
     printf("L'operation s'est parfaitement bien passee\n");
 
 
