@@ -8,7 +8,4 @@
 - DUREUX Aurélien
 
 #### Tâches :
-
-- [ ] Premier brainstorming compréhension cryptage
-- [ ] Première ébauche de l'algo
-- [ ] Mise en place de la structure en #C
+done
