@@ -1,4 +1,8 @@
 # Initiation à la cryptographie symétrique
+[![forthebadge](https://forthebadge.com/images/badges/made-with-c.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/0-percent-optimized.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/contains-technical-debt.svg)](https://forthebadge.com)
+
+[Sujet du devoir](https://github.com/PyroPony/NF05_Projet_Crypto/blob/master/Projet_NF05_A20_crypto.pdf)
+
 
 Au cours de notre troisième semestre à l’Université de Technologie de Troyes, nous avons suivi l’Unité d’Enseignement (UE) NF05, « Introduction au langage C ». Dans le cadre de cette UE, nous avons eu l’opportunité de réaliser un projet dans ce langage. Parmi les sujets proposés, nous avons opté pour le sujet portant sur la cryptographie.
 
@@ -9,23 +13,18 @@ La méthode de cryptage que nous avons codé est une méthode itérative. Lors d
 
 L'objectif de notre projet est de pouvoir appliquer cette méthode de cryptage à tout document, quelque soit son type, en choisissant une clé de cryptage ainsi qu’un nombre d’itérations.
 
+
+## Pour commencer
+
 ### Pré-requis
 
-Ce projet n’a pas été compilé en exécutable, par conséquent il est nécessaire d’avoir un IDE ainsi que CMakes d’installés. De plus, sa conception a été réalisée sur des machines sous Windows 10 [64 bits].
+Ce projet nécessite d’avoir un IDE ainsi que CMakes d’installés. De plus, sa conception a été réalisée sur des machines sous Windows 10 [64 bits].
+
+(Un executable est dispo mais il ne fonctionne pas, enfin je crois)
 
 - IDE
 - CMakes
 
-### Installation
-
-Les étapes pour installer votre programme....
-
-Dites ce qu'il faut faire...
-
-_exemple_: Executez la commande ``telnet mapscii.me`` pour commencer ensuite [...]
-
-
-Ensuite vous pouvez montrer ce que vous obtenez au final...
 
 ## Démarrage
 
@@ -44,13 +43,21 @@ Afin de faire fonctionner le programme, il est nécessaire de suivre l'odre suiv
 4. Indiquer si l'on souhaite définir le nom du fichier en sortie d'éxecution 
   a. Si oui, alors entrer une chaine de caractères définissant le nom [nom]
  
-##Fonctionnalités
+## Fonctionnalités
 
 - Ce programme permet d'effectuer le cryptage et le décryptage d'un fichier de tout type et toute taille selon une clé de chiffrement et un nombre d'itérations.
 
 - Il est possible de choisir un nom spécifique pour le fichier en sortie d'opération
 
 - Lors de l'opération, il y a un suivi de l'avancement de celle-ci.
+
+## Documentation Doxygen
+
+Afin d'avoir une meilleur compréhension de la conception du code, une documentation Doxygen est disponible en en [HTML](https://github.com/PyroPony/NF05_Projet_Crypto/blob/master/documentation/html) ainsi qu'en [PDF](https://github.com/PyroPony/NF05_Projet_Crypto/blob/master/documentation/Documentation_Doxygen_Cryptographie.pdf)
+
+## Rapport
+
+Un rapport détaillé sur notre vision de ce projet est disponible en PDF juste : [ici](https://github.com/PyroPony/NF05_Projet_Crypto/blob/master/Rapport_NF05_Dureux_Abdala.pdf)
 
 ## Fabriqué avec
 
