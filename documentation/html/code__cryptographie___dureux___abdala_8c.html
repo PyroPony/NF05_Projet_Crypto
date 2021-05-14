@@ -1,0 +1,769 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.20"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>NF05 Project: Référence du fichier C:/Users/Aya/Desktop/UTT/TC03/NF05/projet/projet_cryptographie/code_cryptographie_Dureux_Abdala.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">NF05 Project
+   &#160;<span id="projectnumber">Version Finale</span>
+   </div>
+   <div id="projectbrief">Projet Cryptographie</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.20 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','Recherche');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Fonctions</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence du fichier code_cryptographie_Dureux_Abdala.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;math.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;time.h&gt;</code><br />
+</div>
+<p><a href="code__cryptographie___dureux___abdala_8c_source.html">Aller au code source de ce fichier.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:acb7a2c988958e59fe25354c1a04be6a4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="code__cryptographie___dureux___abdala_8c.html#acb7a2c988958e59fe25354c1a04be6a4">CRYPT</a>&#160;&#160;&#160;0</td></tr>
+<tr class="memdesc:acb7a2c988958e59fe25354c1a04be6a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de définir l'opération effectuée.  <a href="code__cryptographie___dureux___abdala_8c.html#acb7a2c988958e59fe25354c1a04be6a4">Plus de détails...</a><br /></td></tr>
+<tr class="separator:acb7a2c988958e59fe25354c1a04be6a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36fab47015485191712a579a059a7c20"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="code__cryptographie___dureux___abdala_8c.html#a36fab47015485191712a579a059a7c20">DECRYPT</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memdesc:a36fab47015485191712a579a059a7c20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de définir l'opération effectuée.  <a href="code__cryptographie___dureux___abdala_8c.html#a36fab47015485191712a579a059a7c20">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a36fab47015485191712a579a059a7c20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa93f0eb578d23995850d61f7d61c55c1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="code__cryptographie___dureux___abdala_8c.html#aa93f0eb578d23995850d61f7d61c55c1">FALSE</a>&#160;&#160;&#160;0</td></tr>
+<tr class="memdesc:aa93f0eb578d23995850d61f7d61c55c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Booléen pour contrôle sortie de certaines boucles.  <a href="code__cryptographie___dureux___abdala_8c.html#aa93f0eb578d23995850d61f7d61c55c1">Plus de détails...</a><br /></td></tr>
+<tr class="separator:aa93f0eb578d23995850d61f7d61c55c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa29558f46a6be1aaf388475e7c75c082"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="code__cryptographie___dureux___abdala_8c.html#aa29558f46a6be1aaf388475e7c75c082">NB_BIT</a>&#160;&#160;&#160;8</td></tr>
+<tr class="memdesc:aa29558f46a6be1aaf388475e7c75c082"><td class="mdescLeft">&#160;</td><td class="mdescRight">Valeur définie pour fixer le nombre de bit par octet.  <a href="code__cryptographie___dureux___abdala_8c.html#aa29558f46a6be1aaf388475e7c75c082">Plus de détails...</a><br /></td></tr>
+<tr class="separator:aa29558f46a6be1aaf388475e7c75c082"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8fdd845b6bacba5185e70c3d477d4f08"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="code__cryptographie___dureux___abdala_8c.html#a8fdd845b6bacba5185e70c3d477d4f08">NB_OCTET</a>&#160;&#160;&#160;4</td></tr>
+<tr class="memdesc:a8fdd845b6bacba5185e70c3d477d4f08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Valeur définie pour fixer le nombre d'octet par paquet.  <a href="code__cryptographie___dureux___abdala_8c.html#a8fdd845b6bacba5185e70c3d477d4f08">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a8fdd845b6bacba5185e70c3d477d4f08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8cecfc5c5c054d2875c03e77b7be15d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="code__cryptographie___dureux___abdala_8c.html#aa8cecfc5c5c054d2875c03e77b7be15d">TRUE</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memdesc:aa8cecfc5c5c054d2875c03e77b7be15d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Booléen pour contrôle sortie de certaines boucles.  <a href="code__cryptographie___dureux___abdala_8c.html#aa8cecfc5c5c054d2875c03e77b7be15d">Plus de détails...</a><br /></td></tr>
+<tr class="separator:aa8cecfc5c5c054d2875c03e77b7be15d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:a4d96e769d32b3e1a6cb2eb31ce1a2d71"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="code__cryptographie___dureux___abdala_8c.html#a4d96e769d32b3e1a6cb2eb31ce1a2d71">etape_1_crypt</a> (int *oct, const char *key)</td></tr>
+<tr class="memdesc:a4d96e769d32b3e1a6cb2eb31ce1a2d71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Etape de cryptage 1 - Associe à chaque valeur une autre valeur par ajout valeurs ASCII termes de clé  <a href="code__cryptographie___dureux___abdala_8c.html#a4d96e769d32b3e1a6cb2eb31ce1a2d71">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a4d96e769d32b3e1a6cb2eb31ce1a2d71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f2477f5941a360aa4a08babbbe3441f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="code__cryptographie___dureux___abdala_8c.html#a2f2477f5941a360aa4a08babbbe3441f">etape_1_decrypt</a> (int *oct, const char *key)</td></tr><tr class="memdesc:a2f2477f5941a360aa4a08babbbe3441f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Etape de décryptage 1 - Associe à chaque valeur une autre valeur par retrait valeurs ASCII termes de clé  <a href="code__cryptographie___dureux___abdala_8c.html#a2f2477f5941a360aa4a08babbbe3441f">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a2f2477f5941a360aa4a08babbbe3441f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a500f132a214e2fcb01cc870389002814"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="code__cryptographie___dureux___abdala_8c.html#a500f132a214e2fcb01cc870389002814">etape_2_crypt_decrypt</a> (int *oct)</td></tr>
+<tr class="memdesc:a500f132a214e2fcb01cc870389002814"><td class="mdescLeft">&#160;</td><td class="mdescRight">Etape de cryptage et décryptage 2 - Associe à chaque x un y grâce au fichier permut_etape_2.txt.  <a href="code__cryptographie___dureux___abdala_8c.html#a500f132a214e2fcb01cc870389002814">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a500f132a214e2fcb01cc870389002814"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8d8d2cb4eb17b475860290fad631979"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="code__cryptographie___dureux___abdala_8c.html#aa8d8d2cb4eb17b475860290fad631979">etape_3_crypt</a> (int **bits_oct)</td></tr>
+<tr class="memdesc:aa8d8d2cb4eb17b475860290fad631979"><td class="mdescLeft">&#160;</td><td class="mdescRight">Etape de cryptage 3 - Calcul matriciel selon constantes imposées dans le sujet.  <a href="code__cryptographie___dureux___abdala_8c.html#aa8d8d2cb4eb17b475860290fad631979">Plus de détails...</a><br /></td></tr>
+<tr class="separator:aa8d8d2cb4eb17b475860290fad631979"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af62498db9a30d2822ffd1ecd09190037"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="code__cryptographie___dureux___abdala_8c.html#af62498db9a30d2822ffd1ecd09190037">etape_3_decrypt</a> (int **bits_oct)</td></tr>
+<tr class="memdesc:af62498db9a30d2822ffd1ecd09190037"><td class="mdescLeft">&#160;</td><td class="mdescRight">Etape de décryptage 3 - Calcul matriciel selon constantes imposées dans le sujet.  <a href="code__cryptographie___dureux___abdala_8c.html#af62498db9a30d2822ffd1ecd09190037">Plus de détails...</a><br /></td></tr>
+<tr class="separator:af62498db9a30d2822ffd1ecd09190037"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae18b95ac8a5de4e6ac6ef5fc4b1be623"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="code__cryptographie___dureux___abdala_8c.html#ae18b95ac8a5de4e6ac6ef5fc4b1be623">etape_4_crypt</a> (int **bits_oct, int nb_iteration, int etape_iteration, char *key)</td></tr>
+<tr class="memdesc:ae18b95ac8a5de4e6ac6ef5fc4b1be623"><td class="mdescLeft">&#160;</td><td class="mdescRight">Etape de cryptage 4 - Genere sous_clé via clé et étape pour ensuite faire XOR bit par bit.  <a href="code__cryptographie___dureux___abdala_8c.html#ae18b95ac8a5de4e6ac6ef5fc4b1be623">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ae18b95ac8a5de4e6ac6ef5fc4b1be623"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76ece36746efc43d9df06a703b93ba7b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="code__cryptographie___dureux___abdala_8c.html#a76ece36746efc43d9df06a703b93ba7b">etape_4_decrypt</a> (int **bits_oct, int nb_iteration, int etape_iteration, char *key)</td></tr>
+<tr class="memdesc:a76ece36746efc43d9df06a703b93ba7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Etape de décryptage 4 - Genere sous_clé via clé et étape pour ensuite faire XOR bit par bit.  <a href="code__cryptographie___dureux___abdala_8c.html#a76ece36746efc43d9df06a703b93ba7b">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a76ece36746efc43d9df06a703b93ba7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc9e92c958b511f2760c411c44f99e6e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="code__cryptographie___dureux___abdala_8c.html#adc9e92c958b511f2760c411c44f99e6e">etape_5_crypt</a> (int *oct)</td></tr>
+<tr class="memdesc:adc9e92c958b511f2760c411c44f99e6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Etape de cryptage 5 - Calcul système imposé par le sujet.  <a href="code__cryptographie___dureux___abdala_8c.html#adc9e92c958b511f2760c411c44f99e6e">Plus de détails...</a><br /></td></tr>
+<tr class="separator:adc9e92c958b511f2760c411c44f99e6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a475f255bb23e17a40c4de9ad4015e708"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="code__cryptographie___dureux___abdala_8c.html#a475f255bb23e17a40c4de9ad4015e708">etape_5_decrypt</a> (int *oct)</td></tr>
+<tr class="memdesc:a475f255bb23e17a40c4de9ad4015e708"><td class="mdescLeft">&#160;</td><td class="mdescRight">Etape de décryptage 5 - Calcul inverse système etape 5 crypt imposée par le sujet.  <a href="code__cryptographie___dureux___abdala_8c.html#a475f255bb23e17a40c4de9ad4015e708">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a475f255bb23e17a40c4de9ad4015e708"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51af30a60f9f02777c6396b8247e356f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="code__cryptographie___dureux___abdala_8c.html#a51af30a60f9f02777c6396b8247e356f">main</a> ()</td></tr>
+<tr class="memdesc:a51af30a60f9f02777c6396b8247e356f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saisie des informations necessaires et effecture lecture et écriture dans les fichiers.  <a href="code__cryptographie___dureux___abdala_8c.html#a51af30a60f9f02777c6396b8247e356f">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a51af30a60f9f02777c6396b8247e356f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acccacfdb66567cfdc46644f14e5de92c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="code__cryptographie___dureux___abdala_8c.html#acccacfdb66567cfdc46644f14e5de92c">pass_binary</a> (int *oct, int **bits_oct)</td></tr>
+<tr class="memdesc:acccacfdb66567cfdc46644f14e5de92c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Passage de valeurs decimales a valeurs binaires.  <a href="code__cryptographie___dureux___abdala_8c.html#acccacfdb66567cfdc46644f14e5de92c">Plus de détails...</a><br /></td></tr>
+<tr class="separator:acccacfdb66567cfdc46644f14e5de92c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6fc480788edfa09d76032b3992230ec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="code__cryptographie___dureux___abdala_8c.html#ad6fc480788edfa09d76032b3992230ec">pass_decimal</a> (int **bits_oct, int *oct)</td></tr>
+<tr class="memdesc:ad6fc480788edfa09d76032b3992230ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Passage de valeurs binaires a valeurs decimales.  <a href="code__cryptographie___dureux___abdala_8c.html#ad6fc480788edfa09d76032b3992230ec">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ad6fc480788edfa09d76032b3992230ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48573c7e6e6c9197b8e7f50cc30c8533"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="code__cryptographie___dureux___abdala_8c.html#a48573c7e6e6c9197b8e7f50cc30c8533">saisie_chaine_dynam</a> ()</td></tr>
+<tr class="memdesc:a48573c7e6e6c9197b8e7f50cc30c8533"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saisie une chaîne dynamiquement sans connaître sa taille à l'avance.  <a href="code__cryptographie___dureux___abdala_8c.html#a48573c7e6e6c9197b8e7f50cc30c8533">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a48573c7e6e6c9197b8e7f50cc30c8533"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86529ed90a60ebe2f9d2171228173273"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="code__cryptographie___dureux___abdala_8c.html#a86529ed90a60ebe2f9d2171228173273">sous_cle</a> (int mode, int nb_it_tot, int etape_it, char *key, int sub_key[])</td></tr>
+<tr class="memdesc:a86529ed90a60ebe2f9d2171228173273"><td class="mdescLeft">&#160;</td><td class="mdescRight">SGeneration sous-cles a partir clé de cryptage et etape d'itération pour étape 4 cryptage.<a href="code__cryptographie___dureux___abdala_8c.html#a86529ed90a60ebe2f9d2171228173273">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a86529ed90a60ebe2f9d2171228173273"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Documentation des macros</h2>
+<a id="acb7a2c988958e59fe25354c1a04be6a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb7a2c988958e59fe25354c1a04be6a4">&#9670;&nbsp;</a></span>CRYPT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CRYPT&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Permet de définir l'opération effectuée. </p>
+
+<p class="definition">Définition à la ligne <a class="el" href="code__cryptographie___dureux___abdala_8c_source.html#l00011">11</a> du fichier <a class="el" href="code__cryptographie___dureux___abdala_8c_source.html">code_cryptographie_Dureux_Abdala.c</a>.</p>
+
+</div>
+</div>
+<a id="a36fab47015485191712a579a059a7c20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36fab47015485191712a579a059a7c20">&#9670;&nbsp;</a></span>DECRYPT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DECRYPT&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Permet de définir l'opération effectuée. </p>
+
+<p class="definition">Définition à la ligne <a class="el" href="code__cryptographie___dureux___abdala_8c_source.html#l00015">15</a> du fichier <a class="el" href="code__cryptographie___dureux___abdala_8c_source.html">code_cryptographie_Dureux_Abdala.c</a>.</p>
+
+</div>
+</div>
+<a id="aa93f0eb578d23995850d61f7d61c55c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa93f0eb578d23995850d61f7d61c55c1">&#9670;&nbsp;</a></span>FALSE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define FALSE&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Booléen pour contrôle sortie de certaines boucles. </p>
+
+<p class="definition">Définition à la ligne <a class="el" href="code__cryptographie___dureux___abdala_8c_source.html#l00019">19</a> du fichier <a class="el" href="code__cryptographie___dureux___abdala_8c_source.html">code_cryptographie_Dureux_Abdala.c</a>.</p>
+
+</div>
+</div>
+<a id="aa29558f46a6be1aaf388475e7c75c082"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa29558f46a6be1aaf388475e7c75c082">&#9670;&nbsp;</a></span>NB_BIT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NB_BIT&#160;&#160;&#160;8</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Valeur définie pour fixer le nombre de bit par octet. </p>
+
+<p class="definition">Définition à la ligne <a class="el" href="code__cryptographie___dureux___abdala_8c_source.html#l00033">33</a> du fichier <a class="el" href="code__cryptographie___dureux___abdala_8c_source.html">code_cryptographie_Dureux_Abdala.c</a>.</p>
+
+</div>
+</div>
+<a id="a8fdd845b6bacba5185e70c3d477d4f08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8fdd845b6bacba5185e70c3d477d4f08">&#9670;&nbsp;</a></span>NB_OCTET</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NB_OCTET&#160;&#160;&#160;4</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Valeur définie pour fixer le nombre d'octet par paquet. </p>
+
+<p class="definition">Définition à la ligne <a class="el" href="code__cryptographie___dureux___abdala_8c_source.html#l00029">29</a> du fichier <a class="el" href="code__cryptographie___dureux___abdala_8c_source.html">code_cryptographie_Dureux_Abdala.c</a>.</p>
+
+</div>
+</div>
+<a id="aa8cecfc5c5c054d2875c03e77b7be15d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8cecfc5c5c054d2875c03e77b7be15d">&#9670;&nbsp;</a></span>TRUE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TRUE&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Booléen pour contrôle sortie de certaines boucles. </p>
+
+<p class="definition">Définition à la ligne <a class="el" href="code__cryptographie___dureux___abdala_8c_source.html#l00023">23</a> du fichier <a class="el" href="code__cryptographie___dureux___abdala_8c_source.html">code_cryptographie_Dureux_Abdala.c</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des fonctions</h2>
+<a id="a4d96e769d32b3e1a6cb2eb31ce1a2d71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d96e769d32b3e1a6cb2eb31ce1a2d71">&#9670;&nbsp;</a></span>etape_1_crypt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">etape_1_crypt </td>
+          <td>(</td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>oct</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>key</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Etape de cryptage 1 - Associe à chaque valeur une autre valeur par ajout valeurs ASCII termes de clé </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">*oct</td><td>Passage par adresse tableau des octets </td></tr>
+    <tr><td class="paramname">*key</td><td>Passage clé de chiffrement (const : car même si passage par adresse aucune modification sur la clé) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>N/A </dd></dl>
+
+<p class="definition">Définition à la ligne <a class="el" href="code__cryptographie___dureux___abdala_8c_source.html#l00093">93</a> du fichier <a class="el" href="code__cryptographie___dureux___abdala_8c_source.html">code_cryptographie_Dureux_Abdala.c</a>.</p>
+
+</div>
+</div>
+<a id="a2f2477f5941a360aa4a08babbbe3441f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f2477f5941a360aa4a08babbbe3441f">&#9670;&nbsp;</a></span>etape_1_decrypt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void etape_1_decrypt </td>
+          <td>(</td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>oct</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>key</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Etape de décryptage 1 - Associe à chaque valeur une autre valeur par retrait valeurs ASCII termes de clé </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">*oct</td><td>Passage par adresse tableau des octets </td></tr>
+    <tr><td class="paramname">*key</td><td>Passage clé de chiffrement (const : car même si passage par adresse aucune modification sur la clé) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>N/A </dd></dl>
+
+<p class="definition">Définition à la ligne <a class="el" href="code__cryptographie___dureux___abdala_8c_source.html#l00114">114</a> du fichier <a class="el" href="code__cryptographie___dureux___abdala_8c_source.html">code_cryptographie_Dureux_Abdala.c</a>.</p>
+
+</div>
+</div>
+<a id="a500f132a214e2fcb01cc870389002814"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a500f132a214e2fcb01cc870389002814">&#9670;&nbsp;</a></span>etape_2_crypt_decrypt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">etape_2_crypt_decrypt </td>
+          <td>(</td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>oct</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Etape de cryptage et décryptage 2 - Associe à chaque x un y grâce au fichier permut_etape_2.txt. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">*oct</td><td>Passage par adresse tableau des octets </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>N/A </dd></dl>
+
+<p class="definition">Définition à la ligne <a class="el" href="code__cryptographie___dureux___abdala_8c_source.html#l00142">142</a> du fichier <a class="el" href="code__cryptographie___dureux___abdala_8c_source.html">code_cryptographie_Dureux_Abdala.c</a>.</p>
+
+</div>
+</div>
+<a id="aa8d8d2cb4eb17b475860290fad631979"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8d8d2cb4eb17b475860290fad631979">&#9670;&nbsp;</a></span>etape_3_crypt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">etape_3_crypt </td>
+          <td>(</td>
+          <td class="paramtype">int **&#160;</td>
+          <td class="paramname"><em>bits_oct</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Etape de cryptage 3 - Calcul matriciel selon constantes imposées dans le sujet. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**bits_oct</td><td>Passage par adresse tableau des octets de 8 bits </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>N/A </dd></dl>
+
+<p class="definition">Définition à la ligne <a class="el" href="code__cryptographie___dureux___abdala_8c_source.html#l00183">183</a> du fichier <a class="el" href="code__cryptographie___dureux___abdala_8c_source.html">code_cryptographie_Dureux_Abdala.c</a>.</p>
+
+</div>
+</div>
+<a id="af62498db9a30d2822ffd1ecd09190037"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af62498db9a30d2822ffd1ecd09190037">&#9670;&nbsp;</a></span>etape_3_decrypt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">etape_3_decrypt </td>
+          <td>(</td>
+          <td class="paramtype">int **&#160;</td>
+          <td class="paramname"><em>bits_oct</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Etape de décryptage 3 - Calcul matriciel selon constantes imposées dans le sujet. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**bits_oct</td><td>Passage par adresse tableau des octets de 8 bits </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>N/A </dd></dl>
+
+<p class="definition">Définition à la ligne <a class="el" href="code__cryptographie___dureux___abdala_8c_source.html#l00224">224</a> du fichier <a class="el" href="code__cryptographie___dureux___abdala_8c_source.html">code_cryptographie_Dureux_Abdala.c</a>.</p>
+
+</div>
+</div>
+<a id="ae18b95ac8a5de4e6ac6ef5fc4b1be623"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae18b95ac8a5de4e6ac6ef5fc4b1be623">&#9670;&nbsp;</a></span>etape_4_crypt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">etape_4_crypt </td>
+          <td>(</td>
+          <td class="paramtype">int **&#160;</td>
+          <td class="paramname"><em>bits_oct</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nb_iteration</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>etape_iteration</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>key</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Etape de cryptage 4 - Genere sous_clé via clé et étape pour ensuite faire XOR bit par bit. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**bits_oct</td><td>Passage par adresse tableau des octets de 8 bits </td></tr>
+    <tr><td class="paramname">nb_iteration</td><td>Nombre d'itération totale pour génération sous-clé </td></tr>
+    <tr><td class="paramname">etape_iteration</td><td>Etape actuelle d'itération pour génération sous-clé </td></tr>
+    <tr><td class="paramname">*key</td><td>Clé de chiffrement via son adresse </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>N/A </dd></dl>
+
+<p class="definition">Définition à la ligne <a class="el" href="code__cryptographie___dureux___abdala_8c_source.html#l00303">303</a> du fichier <a class="el" href="code__cryptographie___dureux___abdala_8c_source.html">code_cryptographie_Dureux_Abdala.c</a>.</p>
+
+</div>
+</div>
+<a id="a76ece36746efc43d9df06a703b93ba7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76ece36746efc43d9df06a703b93ba7b">&#9670;&nbsp;</a></span>etape_4_decrypt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">etape_4_decrypt </td>
+          <td>(</td>
+          <td class="paramtype">int **&#160;</td>
+          <td class="paramname"><em>bits_oct</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nb_iteration</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>etape_iteration</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>key</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Etape de décryptage 4 - Genere sous_clé via clé et étape pour ensuite faire XOR bit par bit. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**bits_oct</td><td>Passage par adresse tableau des octets de 8 bits </td></tr>
+    <tr><td class="paramname">nb_iteration</td><td>Nombre d'itération totale pour génération sous-clé </td></tr>
+    <tr><td class="paramname">etape_iteration</td><td>Etape actuelle d'itération pour génération sous-clé </td></tr>
+    <tr><td class="paramname">*key</td><td>Clé de chiffrement via son adresse </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>N/A </dd></dl>
+
+<p class="definition">Définition à la ligne <a class="el" href="code__cryptographie___dureux___abdala_8c_source.html#l00325">325</a> du fichier <a class="el" href="code__cryptographie___dureux___abdala_8c_source.html">code_cryptographie_Dureux_Abdala.c</a>.</p>
+
+</div>
+</div>
+<a id="adc9e92c958b511f2760c411c44f99e6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc9e92c958b511f2760c411c44f99e6e">&#9670;&nbsp;</a></span>etape_5_crypt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">etape_5_crypt </td>
+          <td>(</td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>oct</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Etape de cryptage 5 - Calcul système imposé par le sujet. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">*oct</td><td>Passage par adresse tableau des octets </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>N/A </dd></dl>
+
+<p class="definition">Définition à la ligne <a class="el" href="code__cryptographie___dureux___abdala_8c_source.html#l00347">347</a> du fichier <a class="el" href="code__cryptographie___dureux___abdala_8c_source.html">code_cryptographie_Dureux_Abdala.c</a>.</p>
+
+</div>
+</div>
+<a id="a475f255bb23e17a40c4de9ad4015e708"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a475f255bb23e17a40c4de9ad4015e708">&#9670;&nbsp;</a></span>etape_5_decrypt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">etape_5_decrypt </td>
+          <td>(</td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>oct</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Etape de décryptage 5 - Calcul inverse système etape 5 crypt imposée par le sujet. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">*oct</td><td>Passage par adresse tableau des octets </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>N/A </dd></dl>
+
+<p class="definition">Définition à la ligne <a class="el" href="code__cryptographie___dureux___abdala_8c_source.html#l00372">372</a> du fichier <a class="el" href="code__cryptographie___dureux___abdala_8c_source.html">code_cryptographie_Dureux_Abdala.c</a>.</p>
+
+</div>
+</div>
+<a id="a51af30a60f9f02777c6396b8247e356f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51af30a60f9f02777c6396b8247e356f">&#9670;&nbsp;</a></span>main()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">main </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Saisie des informations necessaires et effecture lecture et écriture dans les fichiers. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">N/A</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>N/A </dd></dl>
+
+<p class="definition">Définition à la ligne <a class="el" href="code__cryptographie___dureux___abdala_8c_source.html#l00435">435</a> du fichier <a class="el" href="code__cryptographie___dureux___abdala_8c_source.html">code_cryptographie_Dureux_Abdala.c</a>.</p>
+
+</div>
+</div>
+<a id="acccacfdb66567cfdc46644f14e5de92c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acccacfdb66567cfdc46644f14e5de92c">&#9670;&nbsp;</a></span>pass_binary()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">pass_binary </td>
+          <td>(</td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>oct</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int **&#160;</td>
+          <td class="paramname"><em>bits_oct</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Passage de valeurs decimales a valeurs binaires. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">*oct</td><td>Passage par adresse tableau des octets </td></tr>
+    <tr><td class="paramname">**bits_oct</td><td>Passage par adresse tableau octets de 8 bits </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>N/A </dd></dl>
+
+<p class="definition">Définition à la ligne <a class="el" href="code__cryptographie___dureux___abdala_8c_source.html#l00043">43</a> du fichier <a class="el" href="code__cryptographie___dureux___abdala_8c_source.html">code_cryptographie_Dureux_Abdala.c</a>.</p>
+
+</div>
+</div>
+<a id="ad6fc480788edfa09d76032b3992230ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6fc480788edfa09d76032b3992230ec">&#9670;&nbsp;</a></span>pass_decimal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">pass_decimal </td>
+          <td>(</td>
+          <td class="paramtype">int **&#160;</td>
+          <td class="paramname"><em>bits_oct</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>oct</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Passage de valeurs binaires a valeurs decimales. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">**bits_oct</td><td>Passage par adresse tableau octets de 8 bits </td></tr>
+    <tr><td class="paramname">*oct</td><td>Passage par adresse tableau des octets </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>N/A </dd></dl>
+
+<p class="definition">Définition à la ligne <a class="el" href="code__cryptographie___dureux___abdala_8c_source.html#l00067">67</a> du fichier <a class="el" href="code__cryptographie___dureux___abdala_8c_source.html">code_cryptographie_Dureux_Abdala.c</a>.</p>
+
+</div>
+</div>
+<a id="a48573c7e6e6c9197b8e7f50cc30c8533"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48573c7e6e6c9197b8e7f50cc30c8533">&#9670;&nbsp;</a></span>saisie_chaine_dynam()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">* saisie_chaine_dynam </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Saisie une chaîne dynamiquement sans connaître sa taille à l'avance. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">N/A</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>chaine Chaine de caractère saisie </dd></dl>
+
+<p class="definition">Définition à la ligne <a class="el" href="code__cryptographie___dureux___abdala_8c_source.html#l00401">401</a> du fichier <a class="el" href="code__cryptographie___dureux___abdala_8c_source.html">code_cryptographie_Dureux_Abdala.c</a>.</p>
+
+</div>
+</div>
+<a id="a86529ed90a60ebe2f9d2171228173273"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86529ed90a60ebe2f9d2171228173273">&#9670;&nbsp;</a></span>sous_cle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sous_cle </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>mode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nb_it_tot</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>etape_it</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>sub_key</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Generation sous-cles a partir clé de cryptage et etape d'itération pour étape 4 cryptage</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mode</td><td> Permet de savoir si l'on est en cryptage (0) ou en décryptage (1)</td></tr>
+    <tr><td class="paramname">nb_it_tot</td><td>Nombre total d'itérations</td></tr>
+    <tr><td class="paramname">etape_it</td><td>Etape actuelle d'itérations</td></tr>
+    <tr><td class="paramname">*key</td><td>Pointeur de la clé de chiffrement</td></tr>
+    <tr><td class="paramname">sub_key[]</td><td>Variable de la sous_cle</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>N/A </dd></dl>
+
+<p class="definition">Définition à la ligne <a class="el" href="code__cryptographie___dureux___abdala_8c_source.html#l00271">271</a> du fichier <a class="el" href="code__cryptographie___dureux___abdala_8c_source.html">code_cryptographie_Dureux_Abdala.c</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20
+</small></address>
+</body>
+</html>
