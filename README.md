@@ -66,5 +66,5 @@ Un rapport détaillé sur notre vision de ce projet est disponible en PDF juste 
 
 ## Auteurs
 Listez le(s) auteur(s) du projet ici !
-* **Orel** _alias_ [@pyropony](https://github.com/PyroPony)
+* **Orel** _alias_ [@oreldx](https://github.com/oreldx)
 * **Aya** _alias_ [@aya-adl](https://github.com/aya-adl)
